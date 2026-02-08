@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ammi 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 25px;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+h1 {
+  color: #8e3b46;
+}
+
+p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+
+.whatsapp {
+  margin-top: 20px;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="typing"></h1>
+
+  <p>
+    On your special day, I pray that Allah grants you
+    good health, peace, and endless happiness 🤍  
+    You are a blessing to our family and we are
+    grateful for your love and guidance.
+  </p>
+
+  <!-- Upload her photo or family photo as ammi.jpg -->
+  <img src="ammi.jpg" alt="Birthday Photo">
+
+  <p style="margin-top:10px;">
+    <strong>Dua for you 🤲</strong><br><br>
+    <em>
+    Rabbir hamhuma kama rabbayani sagheera
+    </em><br><br>
+    O Allah, shower Your mercy and blessings upon her
+    and grant her a long, peaceful life.
+  </p>
+
+  <button class="whatsapp" onclick="shareWhatsApp()">
+    Send my love on WhatsApp 💚
+  </button>
+</div>
+
+<script>
+/* Typing animation */
+const text = "Happy Birthday Ammi 🤍";
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 90);
+  }
+}
+type();
+
+function shareWhatsApp() {
+  const msg = encodeURIComponent(
+    "Happy Birthday Ammi 🤍 May Allah bless you with health, peace and happiness always 🤲"
+  );
+  window.open("https://wa.me/?text=" + msg, "_blank");
+}
+</script>
+
+</body>
+</html>
