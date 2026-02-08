@@ -1,241 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Ammi🤍</title>
+<title>Happy Birthday Ammi 🤍</title>
 
 <style>
 body {
   margin: 0;
-  background: linear-gradient(135deg, #fdeff9, #ecf0ff);
-  font-family: 'Georgia', serif;
-}
-
-.wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #fdeff4, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.container {
+  background: #ffffff;
+  width: 90%;
+  max-width: 360px;
   padding: 20px;
-}
-
-.card {
-  background: white;
-  width: 100%;
-  max-width: 380px;
-  border-radius: 25px;
-  padding: 25px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  border-radius: 20px;
   text-align: center;
-  animation: fadeIn 1.5s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-h1 {
-  color: #8e3b46;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.typing {
-  min-height: 40px;
-}
-
-.message {
-  font-size: 15px;
-  color: #444;
-  line-height: 1.7;
-  margin: 15px 0;
-}
-
-.photo {
-  width: 100%;
-  height: 200px;
-  border-radius: 18px;
-  background: #f3f3f3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  margin: 15px 0;
-  overflow: hidden;
-}
-
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.dua {
-  font-size: 14px;
-  background: #faf7f8;
-  padding: 15px;
+/* Media */
+img {
+  width: 90%;
+  max-width: 260px;
   border-radius: 15px;
-  margin-top: 15px;
-  animation: glow 2s infinite alternate;
+  margin: 10px 0;
+  animation: fadeIn 2s ease;
 }
 
-@keyframes glow {
-  from { box-shadow: 0 0 0 rgba(0,0,0,0); }
-  to { box-shadow: 0 0 15px rgba(142,59,70,0.25); }
+video {
+  width: 90%;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
+/* Buttons */
 button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 14px;
-  border-radius: 30px;
+  padding: 12px 20px;
   border: none;
-  background: #25d366;
-  color: white;
+  border-radius: 25px;
   font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #ff6fae;
+  color: white;
+}
+
+.no {
+  background: #ddd;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.hidden {
+  display: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-  <div class="card">
-
-    <h1 class="typing" id="typingText"></h1>
-
-    <div class="message">
-      On your special day, we thank Allah for blessing our family
-      with your love, wisdom, and kindness 🤍  
-      May your days always be filled with peace and happiness.
-    </div>
-
-    <!-- PHOTO PLACE -->
-    <!-- Upload photo as ammi.jpg -->
-    <div class="photo">
-      <img src="ammi.jpg" onerror="this.style.display='none'; this.parentElement.innerHTML='A beautiful memory 🤍';">
-    </div>
-
-    <div class="dua">
-      <strong>Dua for you 🤲</strong><br><br>
-      <em>
-      Allahumma barik laha fi umriha  
-      wa sihhatiha wa rizqiha
-      </em><br><br>
-      O Allah, bless her with long life, good health,
-      and peace of heart.
-    </div>
-
-    <button onclick="shareWhatsApp()">
-      Send Birthday Love on WhatsApp 💚
-    </button>
-
-  </div>
-</div>
-
-<script>
-const text = "Happy Birthday Ammi 🤍";
-let index = 0;
-
-function typeEffect() {
-  if (index < text.length) {
-    document.getElementById("typingText").innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 90);
-  }
-}
-typeEffect();
-
-function shareWhatsApp() {
-  const msg = encodeURIComponent(
-    "Happy Birthday Ammi 🤍 May Allah bless you with health, peace and happiness always 🤲"
-  );
-  window.open("https://wa.me/?text=" + msg, "_blank");
-}
-</script>
-
-</body>
-</html>
-
-
-<body>
-
 <div class="container">
-  <h1 id="typing"></h1>
 
-  <p>
-    On your special day, I pray that Allah grants you
-    good health, peace, and endless happiness 🤍  
-    You are a blessing to our family and we are
-    grateful for your love and guidance.
-  </p>
+  <!-- STEP 1 -->
+  <div id="question">
+    <h2>🎂 Ammi, will you celebrate your birthday with us? 🤍</h2>
+    <button class="yes" onclick="yesClick()">YES 😊</button>
+    <button class="no" onmouseover="noRun()">NO 😶</button>
+  </div>
 
-  <!-- Upload her photo or family photo as ammi.jpg -->
-  <img src="ammi.jpg" alt="Birthday Photo">
+  <!-- STEP 2 -->
+  <div id="content" class="hidden">
 
-  <!--p style="margin-top:10px;">
-    <strong>Dua for you 🤲</strong><br><br>
-    <em>
-    Rabbir hamhuma kama rabbayani sagheera
-    </em><br><br>
-    O Allah, shower Your mercy and blessings upon her
-    and grant her a long, peaceful life.
-</p. -->
+    <h3 id="title"></h3>
 
-   <p style="margin-top:18px; font-size:15px; line-height:1.6;">
-<strong>🤲 Special Dua for You, Ammi 🤍</strong><br><br>
+    <!-- IMAGE -->
+    <img src="ammi.jpg" alt="Ammi">
 
-<em>
-Allahumma barik laha fi umriha,  
-wa sihhatiha, wa afiyatiha,  
-waj‘al qalbaha mutma’innan,  
-warzuqha sakinah wa suroor.
-</em><br><br>
+    <!-- VIDEO (optional) -->
+    <video controls muted playsinline>
+      <source src="ammi.mp4" type="video/mp4">
+    </video>
 
-Ya Allah 🤲  
-Grant Ammi long life, good health, peace of heart,  
-and happiness in this world and the Hereafter.  
-Accept all her duas, forgive her shortcomings,  
-and surround her with Your mercy always. 🌙<br><br>
+    <!-- DUA -->
+    <p id="dua" style="white-space:pre-line; font-size:14px; line-height:1.6;"></p>
 
-Ya Allah, make her Hajj easy, safe, and accepted 🕋  
-Grant her a journey filled with comfort, strength, and barakah,  
-and return her home with sins forgiven  
-and a heart full of noor. 🤍<br><br>
+    <!-- WHATSAPP -->
+    <button class="whatsapp" onclick="share()">Share on WhatsApp 💚</button>
+  </div>
 
-<strong>Ammi,</strong><br>
-If knowingly or unknowingly I have ever hurt you,  
-said something wrong, or made any mistakes,  
-please forgive me. 🙏  
-I seek your duas and your blessings always. 🌸  
-Your happiness means a lot to me 🤍
-</p>
-
-  <button class="whatsapp" onclick="shareWhatsApp()">
-    Send my love on WhatsApp 💚
-  </button>
 </div>
 
 <script>
-/* Typing animation */
-const text = "Happy Birthday Ammi 🤍";
-let i = 0;
-function type() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(type, 90);
+/* NO BUTTON RUN */
+function noRun() {
+  const msgs = [
+    "Please no 🥺",
+    "Think again 😔",
+    "Don't do this to me 💔",
+    "It will make us sad 😢"
+  ];
+  alert(msgs[Math.floor(Math.random() * msgs.length)]);
+}
+
+/* YES CLICK */
+function yesClick() {
+  document.getElementById("question").style.display = "none";
+  document.getElementById("content").classList.remove("hidden");
+  typeText();
+}
+
+/* TYPEWRITER */
+const titleText = "🤲 आपके लिए विशेष दुआ, अम्मी 🤍";
+const duaText = `
+अल्लाहुम्मा बारिक लहा फी उमरिहा,
+वा सिह्हतिहा, वा आफ़ियतिहा,
+वज‘अल क़ल्बहा मुत्मइन्नन,
+वरज़ुक़्हा सकीना व सुरूर।
+
+या अल्लाह 🤲
+अम्मी को लंबी उम्र, अच्छा स्वास्थ्य,
+दिल की शांति और दुनिया व आख़िरत की खुशियाँ अता फ़रमा।
+उनकी सारी दुआओं को क़ुबूल फ़रमा। 🌙
+
+या अल्लाह, उनकी हज की यात्रा को आसान,
+सुरक्षित और क़ुबूल फ़रमा 🕋
+और उन्हें नूर से भरे दिल के साथ वापस लौटा। 🤍
+
+अम्मी,
+अगर जानबूझकर या अनजाने में
+मैंने कभी आपको दुख पहुँचाया हो,
+तो मुझे माफ़ कर दीजिए 🙏
+`;
+
+let i = 0, j = 0;
+
+function typeText() {
+  if (i < titleText.length) {
+    document.getElementById("title").innerHTML += titleText.charAt(i++);
+    setTimeout(typeText, 80);
+  } else if (j < duaText.length) {
+    document.getElementById("dua").innerHTML += duaText.charAt(j++);
+    setTimeout(typeText, 25);
   }
 }
-type();
 
-function shareWhatsApp() {
-  const msg = encodeURIComponent(
-    "Happy Birthday Ammi 🤍 May Allah bless you with health, peace and happiness always 🤲"
-  );
-  window.open("https://wa.me/?text=" + msg, "_blank");
+/* SHARE */
+function share() {
+  const msg = encodeURIComponent("🤍 Ammi ke liye ek special birthday dua 🤲");
+  window.open(`https://wa.me/?text=${msg}`, "_blank");
 }
 </script>
 
