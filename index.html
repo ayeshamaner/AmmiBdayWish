@@ -101,60 +101,172 @@ button {
 }
 </style>
 </head>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ammi 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #fdeff4, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0.8; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+.container {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  padding: 20px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+/* Glowing Title */
+.glow-text {
+  font-size: 24px;
+  color: #b85c7a;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 6px #f8cdda; }
+  to { text-shadow: 0 0 16px #f78fb3; }
+}
+
+/* Buttons */
+button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.yes { background: #ff6fae; color: white; }
+.no { background: #ddd; }
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  width: 100%;
+}
+
+/* Slideshow */
+.slideshow img {
+  width: 90%;
+  max-width: 260px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  margin: 15px 0;
+}
+
+/* Video */
+video {
+  width: 90%;
+  border-radius: 18px;
+  margin: 10px 0;
+}
+
+/* Hidden */
+.hidden { display: none; }
+</style>
+</head>
 
 <body>
 
 <div class="container">
 
-  <!-- STEP 1 -->
+  <h1 class="glow-text">Happy Birthday Ammi 🤍</h1>
+
+  <!-- QUESTION -->
   <div id="question">
-    <h2>🎂 Ammi, will you celebrate your birthday with us? 🤍</h2>
+    <p>Ammi, will you celebrate your birthday with us? 🌸</p>
     <button class="yes" onclick="yesClick()">YES 😊</button>
     <button class="no" onmouseover="noRun()">NO 😶</button>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- CONTENT -->
   <div id="content" class="hidden">
 
-    <h3 id="title"></h3>
-
-    <!-- IMAGE -->
-    <img src="Ammi.jpg" alt="Ammi">
+    <!-- SLIDESHOW -->
+    <div class="slideshow">
+      <img id="slideImg" src="ammi1.jpg" alt="Ammi">
+    </div>
 
     <!-- VIDEO (optional) -->
     <video controls muted playsinline>
-      <source src="video1.mp4" type="video/mp4">
+      <source src="ammi.mp4" type="video/mp4">
     </video>
 
     <!-- DUA -->
+    <h3 id="title"></h3>
     <p id="dua" style="white-space:pre-line; font-size:14px; line-height:1.6;"></p>
 
-    <!-- WHATSAPP -->
     <button class="whatsapp" onclick="share()">Share on WhatsApp 💚</button>
   </div>
 
 </div>
 
 <script>
-/* NO BUTTON RUN */
+/* Floating Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "🤍";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 700);
+
+/* NO Button */
 function noRun() {
   const msgs = [
     "Please no 🥺",
     "Think again 😔",
-    "Don't do this to me 💔",
-    "It will make us sad 😢"
+    "Don't do this to us 💔",
+    "Say yes Ammi 🤍"
   ];
   alert(msgs[Math.floor(Math.random() * msgs.length)]);
 }
 
-/* YES CLICK */
+/* YES Button */
 function yesClick() {
   document.getElementById("question").style.display = "none";
   document.getElementById("content").classList.remove("hidden");
   typeText();
 }
 
-/* TYPEWRITER */
+/* Typewriter Dua */
 const titleText = "🤲 आपके लिए विशेष दुआ, अम्मी 🤍";
 const duaText = `
 अल्लाहुम्मा बारिक लहा फी उमरिहा,
@@ -178,7 +290,6 @@ const duaText = `
 `;
 
 let i = 0, j = 0;
-
 function typeText() {
   if (i < titleText.length) {
     document.getElementById("title").innerHTML += titleText.charAt(i++);
@@ -189,31 +300,29 @@ function typeText() {
   }
 }
 
-/* SHARE */
+/* Manual Swipe Slideshow */
+const photos = ["ammi1.jpg", "ammi2.jpg", "ammi3.jpg"];
+let index = 0, startX = 0;
+const slideImg = document.getElementById("slideImg");
+
+slideImg.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+slideImg.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) index = (index + 1) % photos.length;
+  else if (endX - startX > 50) index = (index - 1 + photos.length) % photos.length;
+  slideImg.src = photos[index];
+});
+
+/* WhatsApp Share */
 function share() {
   const msg = encodeURIComponent("🤍 Ammi ke liye ek special birthday dua 🤲");
   window.open(`https://wa.me/?text=${msg}`, "_blank");
 }
-
-
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "🤍";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}
-
-setInterval(createHeart, 600);
-
-
-  
 </script>
 
 </body>
 </html>
+
