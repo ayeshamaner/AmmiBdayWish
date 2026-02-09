@@ -318,9 +318,25 @@ slideImg.addEventListener("touchend", e => {
 
 /* WhatsApp Share */
 function share() {
-  const msg = encodeURIComponent("🤍 Ammi ke liye ek special birthday dua 🤲");
-  window.open(`https://wa.me/?text=${msg}`, "_blank");
+  const duaMsg = `
+🤲 आपके लिए विशेष दुआ, अम्मी 🤍
+
+अल्लाह आप को लंबी उम्र, अच्छा स्वास्थ्य,
+दिल की शांति और खुशियाँ अता फरमाए 🌸
+
+हज की यात्रा आसान और क़ुबूल हो 🕋
+आमीन 🤍
+
+देखिए यह खास पेज 👇
+${window.location.href}
+`;
+
+  window.open(
+    "https://wa.me/?text=" + encodeURIComponent(duaMsg),
+    "_blank"
+  );
 }
+
 </script>
 
 </body>
