@@ -6,89 +6,87 @@
 <title>Happy Birthday Ammi 🤍</title>
 
 <style>
-body {
-  margin: 0;
+body{
+  margin:0;
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg,#fff0f5,#ffe4ec);
-  overflow-x: hidden;
-  text-align: center;
+  text-align:center;
+  overflow-x:hidden;
 }
 
-/* Glowing Title */
-h1 {
-  margin-top: 20px;
-  font-size: 34px;
-  color: #ff4d6d;
-  text-shadow: 0 0 10px #ff99aa;
-  animation: glow 2s infinite alternate;
+/* Glowing Text */
+h1{
+  margin-top:20px;
+  font-size:34px;
+  color:#ff4d6d;
+  text-shadow:0 0 10px #ff99aa;
+  animation:glow 2s infinite alternate;
 }
-
-@keyframes glow {
-  from { text-shadow: 0 0 5px #ff99aa; }
-  to { text-shadow: 0 0 20px #ff4d6d; }
+@keyframes glow{
+  from{ text-shadow:0 0 5px #ff99aa; }
+  to{ text-shadow:0 0 20px #ff4d6d; }
 }
 
 /* Slideshow */
-.slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  margin: 20px;
+.slider{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  margin:20px;
 }
-.slide {
-  min-width: 100%;
-  scroll-snap-align: center;
+.slide{
+  min-width:100%;
+  scroll-snap-align:center;
 }
-.slide img, .slide video {
-  width: 90%;
-  border-radius: 15px;
+.slide img,
+.slide video{
+  width:90%;
+  border-radius:18px;
 }
 
 /* Buttons */
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
+button{
+  padding:12px 20px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  margin:10px;
+  cursor:pointer;
 }
-#yesBtn { background: #ff4d6d; color: white; }
-#noBtn { background: #aaa; color: white; }
+#yesBtn{ background:#ff4d6d; color:#fff; }
+#noBtn{ background:#999; color:#fff; }
 
-/* Result Box */
-#result {
-  display: none;
-  margin: 20px;
-  padding: 15px;
-  background: white;
-  border-radius: 15px;
+/* Result box */
+#result{
+  display:none;
+  margin:20px;
+  padding:18px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
 
 /* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  color: pink;
-  animation: float 6s linear infinite;
-}
-@keyframes float {
-  to {
-    transform: translateY(-100vh);
-    opacity: 0;
+@keyframes floatUp{
+  to{
+    transform:translateY(-110vh);
+    opacity:0;
   }
 }
 
 /* Music Button */
-#musicBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(45deg,#ff4d6d,#ff758f);
-  color: white;
-  border-radius: 30px;
-  padding: 12px 18px;
-  z-index: 999;
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:14px 22px;
+  font-size:16px;
+  border-radius:40px;
+  border:none;
+  background:linear-gradient(45deg,#ff4d6d,#ff758f);
+  color:#fff;
+  box-shadow:0 6px 15px rgba(0,0,0,.3);
+  z-index:9999;
 }
 </style>
 </head>
@@ -101,9 +99,7 @@ button {
 <div class="slider">
   <div class="slide"><img src="images/img1.jpg"></div>
   <div class="slide"><img src="images/img2.jpg"></div>
-  <div class="slide"><img src="images/img3.jpg"></div>
   <div class="slide"><video src="videos/v1.mp4" controls></video></div>
-  <div class="slide"><video src="videos/v2.mp4" controls></video></div>
 </div>
 
 <p>Ammi, will you accept my love & dua today? 🤍</p>
@@ -113,47 +109,100 @@ button {
 
 <div id="result">
 <p>
-🤲 <b>Special Dua for You, Ammi</b><br><br>
+🤲 <b>Special Dua for You, Ammi 🤍</b><br><br>
 
-Ya Allah, Ammi ko lambi umar, achi sehat,  
+Ya Allah 🤲  
+Ammi ko lambi umar, achi sehat,  
 dil ka sukoon aur dono jahan ki khushiyan ata farma 🌙  
 Unki tamam duaein qubool farma  
 aur unki Hajj ko asaan, mehfooz aur maqbool bana 🕋🤍<br><br>
 
-Ammi, agar mujhse kabhi jaane-anjane koi galti hui ho  
+Ammi, agar mujhse jaane-anjane  
+kabhi koi galti hui ho  
 toh please mujhe maaf kar dijiye 🙏  
 Aapki khushi mere liye bahut mayne rakhti hai 🤍
 </p>
 
-<button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
+<button onclick="shareWhatsApp()">📲 Share Dua on WhatsApp</button>
 </div>
 
 <!-- Music -->
-<audio id="bgMusic">
+<button id="musicBtn">▶ Play Music</button>
+<audio id="bgMusic" preload="none">
   <source src="music/bg.mp3" type="audio/mpeg">
 </audio>
-<button id="musicBtn" onclick="toggleMusic()">▶ Play Music</button>
 
 <script>
-/* Floating Hearts */
-setInterval(() => {
-  let heart = document.createElement("div");
-  heart.innerHTML = "❤️";
-  heart.className = "heart";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random()*20 + 10 + "px";
+/* Floating hearts */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.innerHTML="❤️";
+  heart.style.position="fixed";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.bottom="-20px";
+  heart.style.fontSize=(30+Math.random()*30)+"px";
+  heart.style.animation="floatUp 6s linear";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 500);
+  setTimeout(()=>heart.remove(),6000);
+},400);
 
 /* YES */
-function yesClick() {
-  document.getElementById("result").style.display = "block";
+function yesClick(){
+  document.getElementById("result").style.display="block";
 }
 
-/* NO (multiple messages) */
+/* NO messages */
+const noMsgs=[
+  "Please Ammi 🥺",
+  "Soch lijiye 🤍",
+  "Dil toot jayega 😢",
+  "Ek baar YES bol dijiye 💕",
+  "Aisa mat kijiye 😭"
+];
+let noCount=0;
+function noClick(){
+  alert(noMsgs[noCount % noMsgs.length]);
+  noCount++;
+}
 
-  
+/* WhatsApp Share – ONLY DUA */
+function shareWhatsApp(){
+  const dua=`🤲 Special Dua for Ammi 🤍
+
+Ya Allah, Ammi ko lambi umar, achi sehat,
+dil ka sukoon aur dono jahan ki khushiyan ata farma 🌙
+Unki tamam duaein qubool farma
+aur unki Hajj ko asaan, mehfooz aur maqbool bana 🕋🤍
+
+Ammi, agar mujhse jaane-anjane
+kabhi koi galti hui ho
+toh please mujhe maaf kar dijiye 🙏
+Aapki khushi mere liye bahut mayne rakhti hai 🤍`;
+
+  window.open("https://wa.me/?text="+encodeURIComponent(dua));
+}
+
+/* Manual Music Play / Pause */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+
+btn.onclick=function(){
+  if(music.paused){
+    music.play().then(()=>{
+      btn.innerHTML="⏸ Pause Music";
+    }).catch(()=>{
+      alert("Tap again to allow music 🎵");
+    });
+  }else{
+    music.pause();
+    btn.innerHTML="▶ Play Music";
+  }
+};
+</script>
+
+</body>
+</html>
+
 
   
   
