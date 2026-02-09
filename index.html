@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,410 +9,156 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #fdeff4, #fff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.container {
-  background: #ffffff;
-  width: 90%;
-  max-width: 360px;
-  padding: 20px;
-  border-radius: 20px;
+  background: linear-gradient(135deg,#fff0f5,#ffe4ec);
+  overflow-x: hidden;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  max-height: 90vh;
-  overflow-y: auto;
 }
 
-/* Media */
-img {
-  width: 90%;
-  max-width: 260px;
-  border-radius: 15px;
-  margin: 10px 0;
-  animation: fadeIn 2s ease;
+/* Glowing Title */
+h1 {
+  margin-top: 20px;
+  font-size: 34px;
+  color: #ff4d6d;
+  text-shadow: 0 0 10px #ff99aa;
+  animation: glow 2s infinite alternate;
 }
 
-video {
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff99aa; }
+  to { text-shadow: 0 0 20px #ff4d6d; }
+}
+
+/* Slideshow */
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 20px;
+}
+.slide {
+  min-width: 100%;
+  scroll-snap-align: center;
+}
+.slide img, .slide video {
   width: 90%;
   border-radius: 15px;
-  margin-top: 10px;
 }
 
 /* Buttons */
 button {
   padding: 12px 20px;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 16px;
   margin: 10px;
   cursor: pointer;
 }
+#yesBtn { background: #ff4d6d; color: white; }
+#noBtn { background: #aaa; color: white; }
 
-.yes {
-  background: #ff6fae;
-  color: white;
+/* Result Box */
+#result {
+  display: none;
+  margin: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 15px;
 }
 
-.no {
-  background: #ddd;
-}
-
-.whatsapp {
-  background: #25D366;
-  color: white;
-  width: 100%;
-}
-
-
-  .heart {
+/* Floating hearts */
+.heart {
   position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.7;
-  z-index: 0;
+  bottom: -10px;
+  color: pink;
+  animation: float 6s linear infinite;
 }
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
+@keyframes float {
+  to {
+    transform: translateY(-100vh);
     opacity: 0;
   }
 }
 
-
-/* Animations */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(15px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.hidden {
-  display: none;
-}
-</style>
-</head>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Ammi 🤍</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #fdeff4, #ffffff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Floating Hearts */
-.heart {
+/* Music Button */
+#musicBtn {
   position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.6;
-  z-index: 0;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 0.8; }
-  to { transform: translateY(-100vh); opacity: 0; }
-}
-
-.container {
-  background: #fff;
-  width: 90%;
-  max-width: 360px;
-  padding: 20px;
-  border-radius: 22px;
-  text-align: center;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 1;
-}
-
-/* Glowing Title */
-.glow-text {
-  font-size: 24px;
-  color: #b85c7a;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 6px #f8cdda; }
-  to { text-shadow: 0 0 16px #f78fb3; }
-}
-
-/* Buttons */
-button {
-  padding: 12px 22px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.yes { background: #ff6fae; color: white; }
-.no { background: #ddd; }
-
-.whatsapp {
-  background: #25D366;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(45deg,#ff4d6d,#ff758f);
   color: white;
-  width: 100%;
+  border-radius: 30px;
+  padding: 12px 18px;
+  z-index: 999;
 }
-
-/* Slideshow */
-.slideshow img {
-  width: 90%;
-  max-width: 260px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  margin: 15px 0;
-}
-
-/* Video */
-video {
-  width: 90%;
-  border-radius: 18px;
-  margin: 10px 0;
-}
-
-/* Hidden */
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Ammi 🤍</title>
-
-<style>
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#fdeff4,#fff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* Floating hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:18px;
-  animation:floatUp 6s linear infinite;
-  opacity:.6;
-}
-@keyframes floatUp{
-  to{transform:translateY(-100vh);opacity:0;}
-}
-
-.container{
-  background:#fff;
-  width:90%;
-  max-width:360px;
-  padding:20px;
-  border-radius:22px;
-  text-align:center;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-  max-height:90vh;
-  overflow-y:auto;
-}
-
-/* Glow title */
-.glow{
-  font-size:24px;
-  color:#b85c7a;
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{
-  to{text-shadow:0 0 16px #f78fb3;}
-}
-
-/* Buttons */
-button{
-  padding:12px 22px;
-  border:none;
-  border-radius:25px;
-  font-size:16px;
-  margin:8px;
-}
-.yes{background:#ff6fae;color:#fff;}
-.no{background:#ddd;}
-.whatsapp{background:#25D366;color:#fff;width:100%;}
-
-/* Slideshow */
-.slideshow img,video{
-  width:90%;
-  max-width:260px;
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
-  margin:10px 0;
-}
-
-.hidden{display:none;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<h1>🎉 Happy Birthday Ammi 🤍</h1>
 
-<h1 class="glow">Happy Birthday Ammi 🤍</h1>
+<!-- Slideshow -->
+<div class="slider">
+  <div class="slide"><img src="images/img1.jpg"></div>
+  <div class="slide"><img src="images/img2.jpg"></div>
+  <div class="slide"><img src="images/img3.jpg"></div>
+  <div class="slide"><video src="videos/v1.mp4" controls></video></div>
+  <div class="slide"><video src="videos/v2.mp4" controls></video></div>
+</div>
+
+<p>Ammi, will you accept my love & dua today? 🤍</p>
+
+<button id="yesBtn" onclick="yesClick()">YES 🤍</button>
+<button id="noBtn" onclick="noClick()">NO 😅</button>
+
+<div id="result">
+<p>
+🤲 <b>Special Dua for You, Ammi</b><br><br>
+
+Ya Allah, Ammi ko lambi umar, achi sehat,  
+dil ka sukoon aur dono jahan ki khushiyan ata farma 🌙  
+Unki tamam duaein qubool farma  
+aur unki Hajj ko asaan, mehfooz aur maqbool bana 🕋🤍<br><br>
+
+Ammi, agar mujhse kabhi jaane-anjane koi galti hui ho  
+toh please mujhe maaf kar dijiye 🙏  
+Aapki khushi mere liye bahut mayne rakhti hai 🤍
+</p>
+
+<button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
+</div>
 
 <!-- Music -->
-<button onclick="playMusic()">🎵 Play Background Music</button>
-<audio id="bgMusic" loop>
-  <source src="bg.mp3" type="audio/mpeg">
+<audio id="bgMusic">
+  <source src="music/bg.mp3" type="audio/mpeg">
 </audio>
-
-<!-- Question -->
-<div id="question">
-  <p>Ammi, will you celebrate your birthday with us? 🌸</p>
-  <button class="yes" onclick="yesClick()">YES 😊</button>
-  <button class="no" onclick="noClick()">NO 😶</button>
-</div>
-
-<!-- Content -->
-<div id="content" class="hidden">
-
-  <!-- Image Slideshow -->
-  <div class="slideshow">
-    <img id="imgSlide" src="ammi1.jpg">
-  </div>
-
-  <!-- Video Slideshow -->
-  <div class="slideshow">
-    <video id="vidSlide" controls playsinline></video><br>
-    <button onclick="prevVideo()">⬅ Prev</button>
-    <button onclick="nextVideo()">Next ➡</button>
-  </div>
-
-  <!-- Dua -->
-  <h3 id="title"></h3>
-  <p id="dua" style="white-space:pre-line;font-size:14px;line-height:1.6;"></p>
-
-  <button class="whatsapp" onclick="share()">Share on WhatsApp 💚</button>
-
-</div>
-
-</div>
+<button id="musicBtn" onclick="toggleMusic()">▶ Play Music</button>
 
 <script>
-/* Floating hearts */
-setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="🤍";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},700);
-
-/* Music */
-function playMusic(){
-  document.getElementById("bgMusic").play();
-}
-
-/* NO button unlimited */
-const noMsgs=[
- "Please no 🥺",
- "Think again 😔",
- "Don't say no Ammi 🤍",
- "We love you 💖",
- "Say yes please 🌸"
-];
-function noClick(){
- alert(noMsgs[Math.floor(Math.random()*noMsgs.length)]);
-}
+/* Floating Hearts */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤️";
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random()*20 + 10 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
 
 /* YES */
-function yesClick(){
- document.getElementById("question").style.display="none";
- document.getElementById("content").classList.remove("hidden");
- playMusic();
- typeText();
+function yesClick() {
+  document.getElementById("result").style.display = "block";
 }
 
-/* Dua typing */
-const titleText="🤲 आपके लिए विशेष दुआ, अम्मी 🤍";
-const duaText=`
-अल्लाह अम्मी को लंबी उम्र,
-अच्छा स्वास्थ्य और दिल की शांति दे 🤍
+/* NO (multiple messages) */
 
-हज की यात्रा आसान और क़ुबूल हो 🕋
-आमीन 🌙
+  
 
-अगर मुझसे कभी गलती हुई हो,
-तो मुझे माफ़ कर दीजिए 🙏
-`;
-let i=0,j=0;
-function typeText(){
- if(i<titleText.length){
-  title.innerHTML+=titleText.charAt(i++);
-  setTimeout(typeText,80);
- }else if(j<duaText.length){
-  dua.innerHTML+=duaText.charAt(j++);
-  setTimeout(typeText,25);
- }
-}
+  
+  
 
-/* Image slideshow swipe */
-const images=[
- "ammi1.jpg","ammi2.jpg","ammi3.jpg",
- "ammi4.jpg","ammi5.jpg"
-];
-let imgIndex=0,startX=0;
-imgSlide.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
-imgSlide.addEventListener("touchend",e=>{
- let endX=e.changedTouches[0].clientX;
- if(startX-endX>50) imgIndex=(imgIndex+1)%images.length;
- if(endX-startX>50) imgIndex=(imgIndex-1+images.length)%images.length;
- imgSlide.src=images[imgIndex];
-});
+  
 
-/* Video slideshow */
-const videos=["ammi1.mp4","ammi2.mp4"];
-let vidIndex=0;
-const vid=document.getElementById("vidSlide");
-vid.src=videos[0];
-function nextVideo(){vidIndex=(vidIndex+1)%videos.length;vid.src=videos[vidIndex];}
-function prevVideo(){vidIndex=(vidIndex-1+videos.length)%videos.length;vid.src=videos[vidIndex];}
-
-/* WhatsApp share */
-function share(){
- const msg=`🤲 Ammi ke liye ek special birthday dua 🤍
-
-Allah aapko sehat, sukoon aur khushiyan de 🌸
-Haj maqbool ho 🕋
-
-Is special page ko dekhiye 👇
-${location.href}`;
- window.open("https://wa.me/?text="+encodeURIComponent(msg));
-}
-</script>
-
-</body>
-</html>
 
 
