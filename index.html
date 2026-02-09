@@ -84,14 +84,11 @@ button {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 14px 22px;
-  font-size: 16px;
-  border-radius: 40px;
-  border: none;
   background: linear-gradient(45deg,#ff4d6d,#ff758f);
   color: white;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  z-index: 9999;
+  border-radius: 30px;
+  padding: 12px 18px;
+  z-index: 999;
 }
 </style>
 </head>
@@ -99,13 +96,6 @@ button {
 <body>
 
 <h1>🎉 Happy Birthday Ammi 🤍</h1>
-
-  <button id="musicBtn">▶ Play Music</button>
-
-<audio id="bgMusic" preload="none">
-  <source src="music/bg.mp3" type="audio/mpeg">
-</audio>
-
 
 <!-- Slideshow -->
 <div class="slider">
@@ -125,9 +115,14 @@ button {
 <p>
 🤲 <b>Special Dua for You, Ammi</b><br><br>
 
-अल्लाहुम्मा बारिक लहा फी उमरिहा, वा सिह्हतिहा, वा आफ़ियतिहा, वज‘अल क़ल्बहा मुत्मइन्नन, वरज़ुक़्हा सकीना व सुरूर।
-या अल्लाह 🤲 अम्मी को लंबी उम्र, अच्छा स्वास्थ्य, दिल की शांति और इस दुनिया व आख़िरत की खुशियाँ अता फ़रमा। उनकी सारी दुआओं को क़ुबूल फ़रमा, उनकी कमियों को माफ़ फ़रमा, और हमेशा अपनी रहमत से उन्हें घेर कर रख। 🌙
-या अल्लाह, उनकी हज की यात्रा को आसान, सुरक्षित और क़ुबूल फ़रमा 🕋 उन्हें आराम, ताक़त और बरकत से भरा सफ़र अता कर, और उन्हें गुनाहों से पाक और नूर से भरे दिल के साथ वापस लौटा। 🤍
+Ya Allah, Ammi ko lambi umar, achi sehat,  
+dil ka sukoon aur dono jahan ki khushiyan ata farma 🌙  
+Unki tamam duaein qubool farma  
+aur unki Hajj ko asaan, mehfooz aur maqbool bana 🕋🤍<br><br>
+
+Ammi, agar mujhse kabhi jaane-anjane koi galti hui ho  
+toh please mujhe maaf kar dijiye 🙏  
+Aapki khushi mere liye bahut mayne rakhti hai 🤍
 </p>
 
 <button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
@@ -151,34 +146,10 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 6000);
 }, 500);
 
-
-  const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
-
-btn.onclick = function () {
-  if (music.paused) {
-    music.play()
-      .then(() => {
-        btn.innerHTML = "⏸ Pause Music";
-      })
-      .catch(() => {
-        alert("Tap again to allow music 🎵");
-      });
-  } else {
-    music.pause();
-    btn.innerHTML = "▶ Play Music";
-  }
-};
-
 /* YES */
 function yesClick() {
   document.getElementById("result").style.display = "block";
 }
 
-
-  </script>
-
-</body>
-</html>
-
 /* NO (multiple messages) */
+
