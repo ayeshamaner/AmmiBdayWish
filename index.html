@@ -196,7 +196,81 @@ video {
 }
 
 /* Hidden */
-.hidden { display: none; }
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ammi 🤍</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#fdeff4,#fff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  animation:floatUp 6s linear infinite;
+  opacity:.6;
+}
+@keyframes floatUp{
+  to{transform:translateY(-100vh);opacity:0;}
+}
+
+.container{
+  background:#fff;
+  width:90%;
+  max-width:360px;
+  padding:20px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  max-height:90vh;
+  overflow-y:auto;
+}
+
+/* Glow title */
+.glow{
+  font-size:24px;
+  color:#b85c7a;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  to{text-shadow:0 0 16px #f78fb3;}
+}
+
+/* Buttons */
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  margin:8px;
+}
+.yes{background:#ff6fae;color:#fff;}
+.no{background:#ddd;}
+.whatsapp{background:#25D366;color:#fff;width:100%;}
+
+/* Slideshow */
+.slideshow img,video{
+  width:90%;
+  max-width:260px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  margin:10px 0;
+}
+
+.hidden{display:none;}
 </style>
 </head>
 
@@ -204,141 +278,141 @@ video {
 
 <div class="container">
 
-  <h1 class="glow-text">Happy Birthday Ammi 🤍</h1>
+<h1 class="glow">Happy Birthday Ammi 🤍</h1>
 
-  <!-- QUESTION -->
-  <div id="question">
-    <p>Ammi, will you celebrate your birthday with us? 🌸</p>
-    <button class="yes" onclick="yesClick()">YES 😊</button>
-    <button class="no" onmouseover="noRun()">NO 😶</button>
+<!-- Music -->
+<button onclick="playMusic()">🎵 Play Background Music</button>
+<audio id="bgMusic" loop>
+  <source src="bg.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Question -->
+<div id="question">
+  <p>Ammi, will you celebrate your birthday with us? 🌸</p>
+  <button class="yes" onclick="yesClick()">YES 😊</button>
+  <button class="no" onclick="noClick()">NO 😶</button>
+</div>
+
+<!-- Content -->
+<div id="content" class="hidden">
+
+  <!-- Image Slideshow -->
+  <div class="slideshow">
+    <img id="imgSlide" src="ammi1.jpg">
   </div>
 
-  <!-- CONTENT -->
-  <div id="content" class="hidden">
-
-    <!-- SLIDESHOW -->
-    <div class="slideshow">
-      <img id="slideImg" src="ammi1.jpg" alt="Ammi">
-    </div>
-
-    <!-- VIDEO (optional) -->
-    <video controls muted playsinline>
-      <source src="ammi.mp4" type="video/mp4">
-    </video>
-
-    <!-- DUA -->
-    <h3 id="title"></h3>
-    <p id="dua" style="white-space:pre-line; font-size:14px; line-height:1.6;"></p>
-
-    <button class="whatsapp" onclick="share()">Share on WhatsApp 💚</button>
+  <!-- Video Slideshow -->
+  <div class="slideshow">
+    <video id="vidSlide" controls playsinline></video><br>
+    <button onclick="prevVideo()">⬅ Prev</button>
+    <button onclick="nextVideo()">Next ➡</button>
   </div>
+
+  <!-- Dua -->
+  <h3 id="title"></h3>
+  <p id="dua" style="white-space:pre-line;font-size:14px;line-height:1.6;"></p>
+
+  <button class="whatsapp" onclick="share()">Share on WhatsApp 💚</button>
+
+</div>
 
 </div>
 
 <script>
-/* Floating Hearts */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "🤍";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHeart, 700);
+/* Floating hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="🤍";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},700);
 
-/* NO Button */
-function noRun() {
-  const msgs = [
-    "Please no 🥺",
-    "Think again 😔",
-    "Don't do this to us 💔",
-    "Say yes Ammi 🤍"
-  ];
-  alert(msgs[Math.floor(Math.random() * msgs.length)]);
+/* Music */
+function playMusic(){
+  document.getElementById("bgMusic").play();
 }
 
-/* YES Button */
-function yesClick() {
-  document.getElementById("question").style.display = "none";
-  document.getElementById("content").classList.remove("hidden");
-  typeText();
+/* NO button unlimited */
+const noMsgs=[
+ "Please no 🥺",
+ "Think again 😔",
+ "Don't say no Ammi 🤍",
+ "We love you 💖",
+ "Say yes please 🌸"
+];
+function noClick(){
+ alert(noMsgs[Math.floor(Math.random()*noMsgs.length)]);
 }
 
-/* Typewriter Dua */
-const titleText = "🤲 आपके लिए विशेष दुआ, अम्मी 🤍";
-const duaText = `
-अल्लाहुम्मा बारिक लहा फी उमरिहा,
-वा सिह्हतिहा, वा आफ़ियतिहा,
-वज‘अल क़ल्बहा मुत्मइन्नन,
-वरज़ुक़्हा सकीना व सुरूर।
-
-या अल्लाह 🤲
-अम्मी को लंबी उम्र, अच्छा स्वास्थ्य,
-दिल की शांति और दुनिया व आख़िरत की खुशियाँ अता फ़रमा।
-उनकी सारी दुआओं को क़ुबूल फ़रमा। 🌙
-
-या अल्लाह, उनकी हज की यात्रा को आसान,
-सुरक्षित और क़ुबूल फ़रमा 🕋
-और उन्हें नूर से भरे दिल के साथ वापस लौटा। 🤍
-
-अम्मी,
-अगर जानबूझकर या अनजाने में
-मैंने कभी आपको दुख पहुँचाया हो,
-तो मुझे माफ़ कर दीजिए 🙏
-`;
-
-let i = 0, j = 0;
-function typeText() {
-  if (i < titleText.length) {
-    document.getElementById("title").innerHTML += titleText.charAt(i++);
-    setTimeout(typeText, 80);
-  } else if (j < duaText.length) {
-    document.getElementById("dua").innerHTML += duaText.charAt(j++);
-    setTimeout(typeText, 25);
-  }
+/* YES */
+function yesClick(){
+ document.getElementById("question").style.display="none";
+ document.getElementById("content").classList.remove("hidden");
+ playMusic();
+ typeText();
 }
 
-/* Manual Swipe Slideshow */
-const photos = ["Ammi.jpg", "ammi1.jpg", "ammi2.jpg", "ammi3.jpg", "ammi4.jpg","ammi5.jpg","ammi6.jpg", "ammi7.jpg" ];
-let index = 0, startX = 0;
-const slideImg = document.getElementById("slideImg");
-
-slideImg.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-slideImg.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) index = (index + 1) % photos.length;
-  else if (endX - startX > 50) index = (index - 1 + photos.length) % photos.length;
-  slideImg.src = photos[index];
-});
-
-/* WhatsApp Share */
-function share() {
-  const duaMsg = `
-🤲 आपके लिए विशेष दुआ, अम्मी 🤍
-
-अल्लाह आप को लंबी उम्र, अच्छा स्वास्थ्य,
-दिल की शांति और खुशियाँ अता फरमाए 🌸
+/* Dua typing */
+const titleText="🤲 आपके लिए विशेष दुआ, अम्मी 🤍";
+const duaText=`
+अल्लाह अम्मी को लंबी उम्र,
+अच्छा स्वास्थ्य और दिल की शांति दे 🤍
 
 हज की यात्रा आसान और क़ुबूल हो 🕋
-आमीन 🤍
+आमीन 🌙
 
-देखिए यह खास पेज 👇
-${window.location.href}
+अगर मुझसे कभी गलती हुई हो,
+तो मुझे माफ़ कर दीजिए 🙏
 `;
-
-  window.open(
-    "https://wa.me/?text=" + encodeURIComponent(duaMsg),
-    "_blank"
-  );
+let i=0,j=0;
+function typeText(){
+ if(i<titleText.length){
+  title.innerHTML+=titleText.charAt(i++);
+  setTimeout(typeText,80);
+ }else if(j<duaText.length){
+  dua.innerHTML+=duaText.charAt(j++);
+  setTimeout(typeText,25);
+ }
 }
 
+/* Image slideshow swipe */
+const images=[
+ "ammi1.jpg","ammi2.jpg","ammi3.jpg",
+ "ammi4.jpg","ammi5.jpg"
+];
+let imgIndex=0,startX=0;
+imgSlide.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+imgSlide.addEventListener("touchend",e=>{
+ let endX=e.changedTouches[0].clientX;
+ if(startX-endX>50) imgIndex=(imgIndex+1)%images.length;
+ if(endX-startX>50) imgIndex=(imgIndex-1+images.length)%images.length;
+ imgSlide.src=images[imgIndex];
+});
+
+/* Video slideshow */
+const videos=["video1.mp4","video2.mp4"];
+let vidIndex=0;
+const vid=document.getElementById("vidSlide");
+vid.src=videos[0];
+function nextVideo(){vidIndex=(vidIndex+1)%videos.length;vid.src=videos[vidIndex];}
+function prevVideo(){vidIndex=(vidIndex-1+videos.length)%videos.length;vid.src=videos[vidIndex];}
+
+/* WhatsApp share */
+function share(){
+ const msg=`🤲 Ammi ke liye ek special birthday dua 🤍
+
+Allah aapko sehat, sukoon aur khushiyan de 🌸
+Haj maqbool ho 🕋
+
+Is special page ko dekhiye 👇
+${location.href}`;
+ window.open("https://wa.me/?text="+encodeURIComponent(msg));
+}
 </script>
 
 </body>
 </html>
+
 
